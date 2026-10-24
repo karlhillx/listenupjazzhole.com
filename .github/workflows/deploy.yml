@@ -103,7 +103,7 @@ jobs:
           }
           trap bring_up EXIT
 
-          remote "docker exec ${DEPLOY_CONTAINER} bash -lc 'cd ${APP_PATH} && php artisan down --retry=60 --no-interaction'"
+          remote "docker exec ${DEPLOY_CONTAINER} bash -lc 'cd ${APP_PATH} && php artisan down --render=\"errors::503\" --retry=60 --no-interaction'"
           went_down=1
 
           tar czf - \
