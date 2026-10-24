@@ -125,6 +125,11 @@
         animation: rise 1s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
     }
 
+    .hero__lede strong {
+        font-weight: 700;
+        color: #fff;
+    }
+
     .hero__cta {
         display: flex;
         flex-wrap: wrap;
@@ -214,6 +219,10 @@
         background:
             linear-gradient(160deg, var(--color-navy-deep), var(--color-navy) 55%, #163a8a);
         color: white;
+    }
+
+    .album .section__lede {
+        color: rgba(255, 255, 255, 0.82);
     }
 
     .album__grid {

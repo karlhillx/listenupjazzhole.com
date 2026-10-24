@@ -53,7 +53,7 @@
                     <span class="brand__hole">Jazzhole!</span>
                 </h1>
                 <p class="hero__lede">
-                    Jeff Aug / Murat Parlak Quintet — debut album
+                    <strong>Jeff Aug / Murat Parlak Quintet</strong> — debut album
                     <em>For the Love of Nine</em> and a European run built for curious ears.
                 </p>
                 <div class="hero__cta">
