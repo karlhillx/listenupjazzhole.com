@@ -283,17 +283,20 @@
                         <p>{{ __('site.story.p2') }}</p>
                         <p>{{ __('site.story.p3') }}</p>
                     </div>
-                    <picture>
-                        <source srcset="/img/band-color.webp" type="image/webp">
-                        <img
-                            class="story__photo"
-                            src="/img/band-color.png"
-                            alt="{{ __('site.story.photo_alt') }}"
-                            width="1024"
-                            height="682"
-                            loading="lazy"
-                        >
-                    </picture>
+                    <figure class="story__media">
+                        <picture>
+                            <source srcset="/img/band-studio.webp" type="image/webp">
+                            <img
+                                class="story__photo"
+                                src="/img/band-studio.jpg"
+                                alt="{{ __('site.story.photo_alt') }}"
+                                width="1024"
+                                height="682"
+                                loading="lazy"
+                            >
+                        </picture>
+                        <figcaption class="story__credit">{{ __('site.story.photo_credit') }}</figcaption>
+                    </figure>
                 </div>
             </section>
 

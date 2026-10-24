@@ -48,7 +48,8 @@ return [
         'p1' => 'Nach einer Tour mit Allan Holdsworth 2012 begannen Gitarrist :jeff und Pianist :murat, was eigentlich Augs achtes akustisches Instrumentalalbum werden sollte. Manche der neuen Stücke verlangten nach einem größeren Raum.',
         'p2' => 'Das Jeff Aug / Murat Parlak Quintet gibt diese Antwort: Fingerstyle-Steelstring-Gitarre und Klavier mit Violine, Cello, Schlagzeug und Percussion — melodisch, filmisch und schwer einer Gattung zuzuordnen.',
         'p3' => '„Es hat 15 Jahre gedauert, bis es so weit war,“ sagt Aug, „aber wenn es leicht wäre, würde es wohl jeder machen.“',
-        'photo_alt' => 'Jeff Aug / Murat Parlak Quintet im Studio',
+        'photo_alt' => 'Jeff Aug / Murat Parlak Quintet im Stockfisch Studio in Northeim',
+        'photo_credit' => 'Foto: Emre Meyda',
     ],
     'lineup' => [
         'eyebrow' => 'Besetzung',
