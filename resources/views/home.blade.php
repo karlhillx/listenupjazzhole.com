@@ -14,7 +14,7 @@
 <html lang="{{ $locale }}">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
         <meta name="description" content="{{ __('site.meta.description') }}">
         <meta property="og:title" content="{{ __('site.meta.title') }}">
         <meta property="og:description" content="{{ __('site.meta.og_description') }}">
@@ -104,17 +104,19 @@
                             class="btn btn--ghost btn--social"
                             href="{{ $tour['social']['facebook'] }}"
                             rel="noopener noreferrer"
+                            aria-label="Facebook"
                         >
                             <span class="btn__icon" aria-hidden="true">@include('partials.facebook-icon')</span>
-                            <span>Facebook</span>
+                            <span class="btn__text">Facebook</span>
                         </a>
                         <a
                             class="btn btn--ghost btn--social"
                             href="{{ $tour['social']['instagram'] }}"
                             rel="noopener noreferrer"
+                            aria-label="Instagram"
                         >
                             <span class="btn__icon" aria-hidden="true">@include('partials.instagram-icon')</span>
-                            <span>Instagram</span>
+                            <span class="btn__text">Instagram</span>
                         </a>
                     </div>
                 </div>
