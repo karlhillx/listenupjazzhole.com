@@ -395,6 +395,75 @@
         align-self: center;
     }
 
+    .contact {
+        background: var(--color-ink);
+        color: var(--color-paper);
+    }
+
+    .contact .section__eyebrow {
+        color: var(--color-signal);
+    }
+
+    .contact .section__lede {
+        color: color-mix(in oklab, var(--color-paper) 78%, black);
+    }
+
+    .contacts {
+        list-style: none;
+        margin: 2.25rem 0 0;
+        padding: 0;
+        border-top: 2px solid rgba(255, 255, 255, 0.85);
+    }
+
+    .contacts li {
+        display: grid;
+        gap: 0.35rem 1.5rem;
+        padding: 1.15rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+        align-items: baseline;
+    }
+
+    @media (min-width: 720px) {
+        .contacts li {
+            grid-template-columns: 8.5rem minmax(0, 1fr) auto;
+        }
+    }
+
+    .contacts__role {
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--color-signal);
+    }
+
+    .contacts__name {
+        font-family: var(--font-display);
+        font-size: clamp(1.6rem, 4vw, 2.15rem);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .contacts__name:hover,
+    .contacts__url:hover {
+        color: var(--color-signal);
+    }
+
+    .contacts__url {
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 0.98rem;
+        text-decoration: none;
+        justify-self: start;
+    }
+
+    @media (min-width: 720px) {
+        .contacts__url {
+            justify-self: end;
+        }
+    }
+
     .site-footer {
         padding: 2rem 0 2.75rem;
         background: var(--color-paper);
@@ -415,6 +484,19 @@
     .site-footer a {
         color: var(--color-ink);
         font-weight: 650;
+        text-decoration: none;
+    }
+
+    .site-footer a:hover {
+        color: var(--color-signal);
+    }
+
+    .site-footer__contacts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem 0.65rem;
+        align-items: center;
+        margin: 0;
     }
 }
 

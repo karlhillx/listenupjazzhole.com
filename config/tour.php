@@ -19,6 +19,18 @@ return [
         ['name' => 'Jann Michael Engel', 'role' => 'Cello'],
         ['name' => 'Sven von Samson', 'role' => 'Drums & percussion'],
     ],
+    'contacts' => [
+        'booking' => [
+            'role' => 'Booking',
+            'name' => 'Maximum Booking',
+            'url' => 'https://www.maximumbooking.com',
+        ],
+        'press' => [
+            'role' => 'Press',
+            'name' => 'Hot Mistake PR',
+            'url' => 'https://www.hotmistakepr.com',
+        ],
+    ],
     'dates' => [
         ['date' => '2027-02-17', 'city' => 'Hamburg', 'country' => 'DE', 'venue' => 'Kent Club'],
         ['date' => '2027-02-19', 'city' => 'Kodersdorf', 'country' => 'DE', 'venue' => 'Weinscheune'],

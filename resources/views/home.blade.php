@@ -179,6 +179,33 @@
                     </ul>
                 </div>
             </section>
+
+            <section class="contact" id="contact" aria-labelledby="contact-title">
+                <div class="section">
+                    <p class="section__eyebrow">Professional contacts</p>
+                    <h2 class="section__title" id="contact-title">Booking &amp; press</h2>
+                    <p class="section__lede">
+                        For tour inquiries and media, reach the team below.
+                    </p>
+                    <ul class="contacts">
+                        @foreach ($tour['contacts'] as $contact)
+                            <li>
+                                <span class="contacts__role">{{ $contact['role'] }}</span>
+                                <a
+                                    class="contacts__name"
+                                    href="{{ $contact['url'] }}"
+                                    rel="noopener noreferrer"
+                                >{{ $contact['name'] }}</a>
+                                <a
+                                    class="contacts__url"
+                                    href="{{ $contact['url'] }}"
+                                    rel="noopener noreferrer"
+                                >{{ preg_replace('#^https?://(www\.)?#', '', rtrim($contact['url'], '/')) }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </section>
         </main>
 
         <footer class="site-footer">
@@ -187,8 +214,10 @@
                     {{ $album['artist'] }} · {{ $album['title'] }} ·
                     <a href="{{ $album['label_url'] }}" rel="noopener noreferrer">{{ $album['label'] }}</a>
                 </p>
-                <p>
-                    <a href="{{ url('/') }}">listenupjazzhole.com</a>
+                <p class="site-footer__contacts">
+                    <a href="{{ $tour['contacts']['booking']['url'] }}" rel="noopener noreferrer">Maximum Booking</a>
+                    <span aria-hidden="true">·</span>
+                    <a href="{{ $tour['contacts']['press']['url'] }}" rel="noopener noreferrer">Hot Mistake PR</a>
                 </p>
             </div>
         </footer>
