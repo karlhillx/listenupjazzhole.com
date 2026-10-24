@@ -9,7 +9,8 @@ return [
         'release' => '2027-02-05',
         'release_label' => '5 February 2027',
         'label' => 'Stockfisch Records',
-        'url' => 'https://www.jeffaug.com',
+        'label_url' => 'https://www.stockfisch-records.de/',
+        'url' => 'https://listenupjazzhole.com',
     ],
     'lineup' => [
         ['name' => 'Jeff Aug', 'role' => 'Guitar'],

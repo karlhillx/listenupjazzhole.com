@@ -86,12 +86,11 @@
                             voltage of jazz, fusion, and progressive rock.
                         </p>
                         <p class="album__meta">
-                            {{ $album['release_label'] }} · {{ $album['label'] }}
+                            {{ $album['release_label'] }} ·
+                            <a href="{{ $album['label_url'] }}" rel="noopener noreferrer">{{ $album['label'] }}</a>
                         </p>
                         <div class="hero__cta" style="margin-top: 1.5rem;">
-                            <a class="btn btn--signal" href="{{ $album['url'] }}" rel="noopener noreferrer">
-                                jeffaug.com
-                            </a>
+                            <a class="btn btn--signal" href="{{ url('/') }}">listenupjazzhole.com</a>
                         </div>
                     </div>
                 </div>
@@ -181,10 +180,11 @@
         <footer class="site-footer">
             <div class="site-footer__inner">
                 <p>
-                    {{ $album['artist'] }} · {{ $album['title'] }} · {{ $album['label'] }}
+                    {{ $album['artist'] }} · {{ $album['title'] }} ·
+                    <a href="{{ $album['label_url'] }}" rel="noopener noreferrer">{{ $album['label'] }}</a>
                 </p>
                 <p>
-                    <a href="https://www.jeffaug.com" rel="noopener noreferrer">jeffaug.com</a>
+                    <a href="{{ url('/') }}">listenupjazzhole.com</a>
                 </p>
             </div>
         </footer>

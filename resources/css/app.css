@@ -245,6 +245,16 @@
         color: rgba(255, 255, 255, 0.78);
     }
 
+    .album__meta a {
+        color: white;
+        text-decoration: underline;
+        text-underline-offset: 0.18em;
+    }
+
+    .album__meta a:hover {
+        color: var(--color-signal);
+    }
+
     .dates {
         list-style: none;
         margin: 2.25rem 0 0;
