@@ -14,16 +14,16 @@
             name="description"
             content="Listen Up, Jazzhole! Tour 2027 — Jeff Aug / Murat Parlak Quintet debut album For the Love of Nine, out 5 February 2027 on Stockfisch Records."
         >
-        <meta property="og:title" content="Listen Up, Jazzhole! Tour 2027">
+        <meta property="og:title" content="Jeff Aug / Murat Parlak Quintet — Listen Up, Jazzhole! Tour 2027">
         <meta
             property="og:description"
-            content="Jeff Aug / Murat Parlak Quintet — debut album For the Love of Nine and European tour."
+            content="Listen Up, Jazzhole! — debut album For the Love of Nine and the 2027 European tour."
         >
         <meta property="og:image" content="{{ url('/img/cover.jpg') }}">
         <meta property="og:type" content="website">
         <meta name="twitter:card" content="summary_large_image">
 
-        <title>Listen Up, Jazzhole! — Jeff Aug / Murat Parlak Quintet Tour 2027</title>
+        <title>Jeff Aug / Murat Parlak Quintet — Listen Up, Jazzhole! Tour 2027</title>
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link
@@ -51,54 +51,56 @@
             <div class="hero__geo" aria-hidden="true"></div>
 
             <div class="hero__inner">
-                <h1 class="brand">
-                    Listen Up,<br>
-                    <span class="brand__hole">Jazzhole!</span>
-                </h1>
-                <p class="hero__lede">
-                    <strong>Jeff Aug / Murat Parlak Quintet</strong> — debut album
-                    <em>For the Love of Nine</em> and a European run built for curious ears.
+                <p class="hero__tagline">
+                    Listen Up, <span class="hero__tagline-mark">Jazzhole!</span>
                 </p>
-                @unless ($tourHasStarted)
-                    <div
-                        class="countdown"
-                        data-countdown
-                        data-countdown-target="{{ $tourStartsAt->toIso8601String() }}"
-                        aria-live="polite"
-                    >
-                        <a class="countdown__label" href="#tour">Tour opens in</a>
-                        <div class="countdown__track" role="timer" aria-atomic="true">
-                            @foreach (['days' => 'Days', 'hours' => 'Hrs', 'minutes' => 'Min', 'seconds' => 'Sec'] as $unit => $label)
-                                <div class="countdown__cell" data-countdown-unit="{{ $unit }}">
-                                    <span class="countdown__value" data-countdown-value>
-                                        <span class="countdown__digit" data-countdown-digit>00</span>
-                                    </span>
-                                    <span class="countdown__unit">{{ $label }}</span>
-                                </div>
-                            @endforeach
+
+                <div class="hero__stack">
+                    <h1 class="hero__band">Jeff Aug / Murat Parlak Quintet</h1>
+                    <p class="hero__lede">
+                        Debut album <em>For the Love of Nine</em> — a European run built for curious ears.
+                    </p>
+                    @unless ($tourHasStarted)
+                        <div
+                            class="countdown"
+                            data-countdown
+                            data-countdown-target="{{ $tourStartsAt->toIso8601String() }}"
+                            aria-live="polite"
+                        >
+                            <a class="countdown__label" href="#tour">Tour opens in</a>
+                            <div class="countdown__track" role="timer" aria-atomic="true">
+                                @foreach (['days' => 'Days', 'hours' => 'Hrs', 'minutes' => 'Min', 'seconds' => 'Sec'] as $unit => $label)
+                                    <div class="countdown__cell" data-countdown-unit="{{ $unit }}">
+                                        <span class="countdown__value" data-countdown-value>
+                                            <span class="countdown__digit" data-countdown-digit>00</span>
+                                        </span>
+                                        <span class="countdown__unit">{{ $label }}</span>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
+                    @endunless
+                    <div class="hero__cta">
+                        <a class="btn btn--signal" href="#watch">Watch</a>
+                        <a class="btn btn--ghost" href="#tour">Tour dates</a>
+                        <a class="btn btn--ghost" href="#album">The album</a>
+                        <a
+                            class="btn btn--ghost btn--social"
+                            href="{{ $tour['social']['facebook'] }}"
+                            rel="noopener noreferrer"
+                        >
+                            <span class="btn__icon" aria-hidden="true">@include('partials.facebook-icon')</span>
+                            <span>Facebook</span>
+                        </a>
+                        <a
+                            class="btn btn--ghost btn--social"
+                            href="{{ $tour['social']['instagram'] }}"
+                            rel="noopener noreferrer"
+                        >
+                            <span class="btn__icon" aria-hidden="true">@include('partials.instagram-icon')</span>
+                            <span>Instagram</span>
+                        </a>
                     </div>
-                @endunless
-                <div class="hero__cta">
-                    <a class="btn btn--signal" href="#watch">Watch</a>
-                    <a class="btn btn--ghost" href="#tour">Tour dates</a>
-                    <a class="btn btn--ghost" href="#album">The album</a>
-                    <a
-                        class="btn btn--ghost btn--social"
-                        href="{{ $tour['social']['facebook'] }}"
-                        rel="noopener noreferrer"
-                    >
-                        <span class="btn__icon" aria-hidden="true">@include('partials.facebook-icon')</span>
-                        <span>Facebook</span>
-                    </a>
-                    <a
-                        class="btn btn--ghost btn--social"
-                        href="{{ $tour['social']['instagram'] }}"
-                        rel="noopener noreferrer"
-                    >
-                        <span class="btn__icon" aria-hidden="true">@include('partials.instagram-icon')</span>
-                        <span>Instagram</span>
-                    </a>
                 </div>
             </div>
         </header>
