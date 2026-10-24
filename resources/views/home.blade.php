@@ -337,6 +337,10 @@
                 <p>
                     {{ $album['artist'] }} · {{ $album['title'] }} ·
                     <a href="{{ $album['label_url'] }}" rel="noopener noreferrer">{{ $album['label'] }}</a>
+                    <span aria-hidden="true">·</span>
+                    <a href="{{ url('/impressum') }}">Impressum</a>
+                    <span aria-hidden="true">·</span>
+                    <a href="{{ url('/datenschutz') }}">Datenschutz</a>
                 </p>
                 <div class="site-footer__end">
                     <p class="site-footer__contacts">
