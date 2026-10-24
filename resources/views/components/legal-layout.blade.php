@@ -6,8 +6,10 @@
 ])
 
 @php
+    app()->setLocale($locale);
     $isDe = $locale === 'de';
-    $tour = config('tour');
+    $home = $isDe ? '/de' : '/';
+    $alternates = collect($hreflang)->except('x-default')->all();
 @endphp
 <!DOCTYPE html>
 <html lang="{{ $locale }}">
@@ -30,20 +32,10 @@
     <body class="site legal-page">
         <header class="legal-top">
             <div class="legal-top__inner">
-                <a class="legal-brand" href="{{ url('/') }}">
+                <a class="legal-brand" href="{{ url($home) }}">
                     Listen Up, <span>Jazzhole!</span>
                 </a>
-                <nav class="legal-lang" aria-label="{{ $isDe ? 'Sprache' : 'Language' }}">
-                    @foreach ($hreflang as $lang => $href)
-                        @if ($lang !== 'x-default')
-                            <a
-                                href="{{ url($href) }}"
-                                lang="{{ $lang }}"
-                                @if ($lang === $locale) aria-current="page" @endif
-                            >{{ strtoupper($lang) }}</a>
-                        @endif
-                    @endforeach
-                </nav>
+                <x-lang-switcher :locale="$locale" :alternates="$alternates" />
             </div>
         </header>
 
@@ -55,21 +47,6 @@
             </div>
         </main>
 
-        <footer class="site-footer">
-            <div class="site-footer__inner">
-                <p>
-                    <a href="{{ url('/') }}">listenupjazzhole.com</a>
-                    <span aria-hidden="true">·</span>
-                    <a href="{{ url($isDe ? '/impressum' : '/imprint') }}">{{ $isDe ? 'Impressum' : 'Imprint' }}</a>
-                    <span aria-hidden="true">·</span>
-                    <a href="{{ url($isDe ? '/datenschutz' : '/privacy') }}">{{ $isDe ? 'Datenschutz' : 'Privacy' }}</a>
-                </p>
-                <p class="site-footer__contacts">
-                    <a href="{{ $tour['contacts']['booking']['url'] }}" rel="noopener noreferrer">Maximum Booking</a>
-                    <span aria-hidden="true">·</span>
-                    <a href="{{ $tour['contacts']['press']['url'] }}" rel="noopener noreferrer">Hot Mistake PR</a>
-                </p>
-            </div>
-        </footer>
+        <x-site-footer :locale="$locale" :alternates="$alternates" />
     </body>
 </html>

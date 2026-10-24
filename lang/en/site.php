@@ -1,0 +1,81 @@
+<?php
+
+return [
+    'meta' => [
+        'description' => 'Listen Up, Jazzhole! Tour 2027 — Jeff Aug / Murat Parlak Quintet debut album For the Love of Nine, out 5 February 2027 on Stockfisch Records.',
+        'og_description' => 'Listen Up, Jazzhole! — debut album For the Love of Nine and the 2027 European tour.',
+        'title' => 'Jeff Aug / Murat Parlak Quintet — Listen Up, Jazzhole! Tour 2027',
+    ],
+    'lang' => [
+        'label' => 'Language',
+        'en' => 'EN',
+        'de' => 'DE',
+    ],
+    'hero' => [
+        'lede' => 'Debut album :album — a European run built for curious ears.',
+        'tour_opens' => 'Tour opens in',
+        'days' => 'Days',
+        'hours' => 'Hrs',
+        'minutes' => 'Min',
+        'seconds' => 'Sec',
+        'watch' => 'Watch',
+        'tour_dates' => 'Tour dates',
+        'the_album' => 'The album',
+    ],
+    'watch' => [
+        'eyebrow' => 'Official video',
+        'title' => 'Hear the room',
+        'lede' => 'The Listen Up, Jazzhole! film — watch inline, open the cinema view, or take it to YouTube.',
+        'cinema' => 'Cinema mode',
+        'play' => 'Play',
+        'close' => 'Close',
+        'close_cinema' => 'Close cinema mode',
+    ],
+    'album' => [
+        'eyebrow' => 'Debut album',
+        'lede' => 'Fifteen years in the making. Recorded at Stockfisch Studio in Northeim — acoustic instrumental music with the intimacy of chamber music and the voltage of jazz, fusion, and progressive rock.',
+        'release_label' => '5 February 2027',
+        'cover_alt' => 'Album cover for For the Love of Nine by Jeff Aug / Murat Parlak Quintet',
+    ],
+    'tour' => [
+        'eyebrow' => ':name Tour',
+        'title' => 'On the road in :year',
+        'lede' => 'Germany, Czechia, Slovakia, and Austria — fifteen nights for the new quintet.',
+    ],
+    'story' => [
+        'eyebrow' => 'The project',
+        'title' => 'Fifteen years to find common ground',
+        'p1' => 'After a tour with Allan Holdsworth in 2012, guitarist :jeff and pianist :murat started writing what was meant to be Aug’s eighth acoustic instrumental album. Some of the new pieces asked for a larger room.',
+        'p2' => 'The Jeff Aug / Murat Parlak Quintet answers that ask: fingerstyle steel-string guitar and piano joined by violin, cello, drums and percussion — melodic, cinematic, and hard to pin to one genre.',
+        'p3' => '“It took 15 years to make this happen,” Aug says, “but if it were easy, I guess everyone would do it.”',
+        'photo_alt' => 'Jeff Aug / Murat Parlak Quintet in the studio',
+    ],
+    'lineup' => [
+        'eyebrow' => 'Lineup',
+        'title' => 'The quintet',
+        'lede' => 'Players from the :anne and beyond — jazz, rock, classical, and Stockfisch studio roots in one ensemble.',
+    ],
+    'roles' => [
+        'Guitar' => 'Guitar',
+        'Piano' => 'Piano',
+        'Violin' => 'Violin',
+        'Cello' => 'Cello',
+        'Drums & percussion' => 'Drums & percussion',
+    ],
+    'contact' => [
+        'eyebrow' => 'Professional contacts',
+        'title' => 'Booking & press',
+        'lede' => 'For tour inquiries and media, reach the team below.',
+        'booking' => 'Booking',
+        'press' => 'Press',
+    ],
+    'footer' => [
+        'legal' => 'Legal',
+        'connect' => 'Connect',
+        'follow' => 'Follow',
+        'label' => 'Label',
+        'impressum' => 'Imprint',
+        'datenschutz' => 'Privacy',
+        'home' => 'Home',
+    ],
+];

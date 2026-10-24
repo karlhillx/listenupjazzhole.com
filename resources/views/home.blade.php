@@ -1,29 +1,33 @@
 @php
+    $locale = $locale ?? 'en';
+    $alternates = $alternates ?? ['de' => '/de', 'en' => '/', 'x-default' => '/'];
+    app()->setLocale($locale);
+
     $album = $tour['album'];
     $video = $tour['video'];
     $dates = collect($tour['dates']);
     $tourStartsAt = \Illuminate\Support\Carbon::parse($tour['starts_at']);
     $tourHasStarted = $tourStartsAt->isPast();
+    $homePath = $locale === 'de' ? '/de' : '/';
 @endphp
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ $locale }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta
-            name="description"
-            content="Listen Up, Jazzhole! Tour 2027 — Jeff Aug / Murat Parlak Quintet debut album For the Love of Nine, out 5 February 2027 on Stockfisch Records."
-        >
-        <meta property="og:title" content="Jeff Aug / Murat Parlak Quintet — Listen Up, Jazzhole! Tour 2027">
-        <meta
-            property="og:description"
-            content="Listen Up, Jazzhole! — debut album For the Love of Nine and the 2027 European tour."
-        >
+        <meta name="description" content="{{ __('site.meta.description') }}">
+        <meta property="og:title" content="{{ __('site.meta.title') }}">
+        <meta property="og:description" content="{{ __('site.meta.og_description') }}">
         <meta property="og:image" content="{{ url('/img/cover.jpg') }}">
         <meta property="og:type" content="website">
+        <meta property="og:locale" content="{{ $locale === 'de' ? 'de_DE' : 'en_US' }}">
         <meta name="twitter:card" content="summary_large_image">
 
-        <title>Jeff Aug / Murat Parlak Quintet — Listen Up, Jazzhole! Tour 2027</title>
+        <title>{{ __('site.meta.title') }}</title>
+        <link rel="canonical" href="{{ url($homePath) }}">
+        @foreach ($alternates as $lang => $href)
+            <link rel="alternate" hreflang="{{ $lang }}" href="{{ url($href) }}">
+        @endforeach
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link
@@ -51,14 +55,21 @@
             <div class="hero__geo" aria-hidden="true"></div>
 
             <div class="hero__inner">
-                <p class="hero__tagline">
-                    Listen Up, <span class="hero__tagline-mark">Jazzhole!</span>
-                </p>
+                <div class="hero__top">
+                    <p class="hero__tagline">
+                        Listen Up, <span class="hero__tagline-mark">Jazzhole!</span>
+                    </p>
+                    <x-lang-switcher
+                        class="lang-switch--hero"
+                        :locale="$locale"
+                        :alternates="$alternates"
+                    />
+                </div>
 
                 <div class="hero__stack">
                     <h1 class="hero__band">Jeff Aug / Murat Parlak Quintet</h1>
                     <p class="hero__lede">
-                        Debut album <em>For the Love of Nine</em> — a European run built for curious ears.
+                        {!! __('site.hero.lede', ['album' => '<em>'.e($album['title']).'</em>']) !!}
                     </p>
                     @unless ($tourHasStarted)
                         <div
@@ -67,9 +78,14 @@
                             data-countdown-target="{{ $tourStartsAt->toIso8601String() }}"
                             aria-live="polite"
                         >
-                            <a class="countdown__label" href="#tour">Tour opens in</a>
+                            <a class="countdown__label" href="#tour">{{ __('site.hero.tour_opens') }}</a>
                             <div class="countdown__track" role="timer" aria-atomic="true">
-                                @foreach (['days' => 'Days', 'hours' => 'Hrs', 'minutes' => 'Min', 'seconds' => 'Sec'] as $unit => $label)
+                                @foreach ([
+                                    'days' => __('site.hero.days'),
+                                    'hours' => __('site.hero.hours'),
+                                    'minutes' => __('site.hero.minutes'),
+                                    'seconds' => __('site.hero.seconds'),
+                                ] as $unit => $label)
                                     <div class="countdown__cell" data-countdown-unit="{{ $unit }}">
                                         <span class="countdown__value" data-countdown-value>
                                             <span class="countdown__digit" data-countdown-digit>00</span>
@@ -81,9 +97,9 @@
                         </div>
                     @endunless
                     <div class="hero__cta">
-                        <a class="btn btn--signal" href="#watch">Watch</a>
-                        <a class="btn btn--ghost" href="#tour">Tour dates</a>
-                        <a class="btn btn--ghost" href="#album">The album</a>
+                        <a class="btn btn--signal" href="#watch">{{ __('site.hero.watch') }}</a>
+                        <a class="btn btn--ghost" href="#tour">{{ __('site.hero.tour_dates') }}</a>
+                        <a class="btn btn--ghost" href="#album">{{ __('site.hero.the_album') }}</a>
                         <a
                             class="btn btn--ghost btn--social"
                             href="{{ $tour['social']['facebook'] }}"
@@ -115,14 +131,12 @@
             >
                 <div class="section watch__layout">
                     <div class="watch__copy">
-                        <p class="section__eyebrow">Official video</p>
-                        <h2 class="section__title" id="watch-title">Hear the room</h2>
-                        <p class="section__lede">
-                            The Listen Up, Jazzhole! film — watch inline, open the cinema view, or take it to YouTube.
-                        </p>
+                        <p class="section__eyebrow">{{ __('site.watch.eyebrow') }}</p>
+                        <h2 class="section__title" id="watch-title">{{ __('site.watch.title') }}</h2>
+                        <p class="section__lede">{{ __('site.watch.lede') }}</p>
                         <div class="watch__actions">
                             <button type="button" class="btn btn--signal" data-watch-open-cinema>
-                                Cinema mode
+                                {{ __('site.watch.cinema') }}
                             </button>
                             <a
                                 class="btn btn--ink"
@@ -160,7 +174,7 @@
                             type="button"
                             class="watch__play"
                             data-watch-play
-                            aria-label="Play {{ $video['title'] }}"
+                            aria-label="{{ __('site.watch.play') }} {{ $video['title'] }}"
                         >
                             <span class="watch__play-ring" aria-hidden="true"></span>
                             <span class="watch__play-core" aria-hidden="true">
@@ -168,7 +182,7 @@
                                     <path fill="currentColor" d="M8.2 5.4v13.2L19.2 12 8.2 5.4z" />
                                 </svg>
                             </span>
-                            <span class="watch__play-label">Play</span>
+                            <span class="watch__play-label">{{ __('site.watch.play') }}</span>
                         </button>
 
                         <div class="watch__caption" aria-hidden="true">
@@ -178,11 +192,16 @@
                 </div>
             </section>
 
-            <dialog class="watch-dialog" data-watch-dialog aria-label="Cinema mode">
+            <dialog class="watch-dialog" data-watch-dialog aria-label="{{ __('site.watch.cinema') }}">
                 <div class="watch-dialog__chrome">
                     <p class="watch-dialog__title">{{ $video['title'] }}</p>
-                    <button type="button" class="watch-dialog__close" data-watch-close aria-label="Close cinema mode">
-                        Close
+                    <button
+                        type="button"
+                        class="watch-dialog__close"
+                        data-watch-close
+                        aria-label="{{ __('site.watch.close_cinema') }}"
+                    >
+                        {{ __('site.watch.close') }}
                     </button>
                 </div>
                 <div class="watch-dialog__stage">
@@ -197,47 +216,40 @@
                         <img
                             class="album__art"
                             src="/img/cover.jpg"
-                            alt="Album cover for For the Love of Nine by Jeff Aug / Murat Parlak Quintet"
+                            alt="{{ __('site.album.cover_alt') }}"
                             width="1024"
                             height="1024"
                             loading="lazy"
                         >
                     </picture>
                     <div>
-                        <p class="section__eyebrow">Debut album</p>
+                        <p class="section__eyebrow">{{ __('site.album.eyebrow') }}</p>
                         <h2 class="section__title" id="album-title">{{ $album['title'] }}</h2>
-                        <p class="section__lede">
-                            Fifteen years in the making. Recorded at Stockfisch Studio in Northeim —
-                            acoustic instrumental music with the intimacy of chamber music and the
-                            voltage of jazz, fusion, and progressive rock.
-                        </p>
+                        <p class="section__lede">{{ __('site.album.lede') }}</p>
                         <p class="album__meta">
-                            {{ $album['release_label'] }} ·
+                            {{ __('site.album.release_label') }} ·
                             <a href="{{ $album['label_url'] }}" rel="noopener noreferrer">{{ $album['label'] }}</a>
                         </p>
-                        <div class="hero__cta" style="margin-top: 1.5rem;">
-                            <a class="btn btn--signal" href="{{ url('/') }}">listenupjazzhole.com</a>
-                        </div>
                     </div>
                 </div>
             </section>
 
             <section id="tour" aria-labelledby="tour-title">
                 <div class="section">
-                    <p class="section__eyebrow">{{ $tour['name'] }} Tour</p>
-                    <h2 class="section__title" id="tour-title">On the road in {{ $tour['year'] }}</h2>
-                    <p class="section__lede">
-                        Germany, Czechia, Slovakia, and Austria — fifteen nights for the new quintet.
-                    </p>
+                    <p class="section__eyebrow">{{ __('site.tour.eyebrow', ['name' => $tour['name']]) }}</p>
+                    <h2 class="section__title" id="tour-title">
+                        {{ __('site.tour.title', ['year' => $tour['year']]) }}
+                    </h2>
+                    <p class="section__lede">{{ __('site.tour.lede') }}</p>
 
                     <ol class="dates">
                         @foreach ($dates as $show)
                             @php
-                                $when = \Illuminate\Support\Carbon::parse($show['date']);
+                                $when = \Illuminate\Support\Carbon::parse($show['date'])->locale($locale);
                             @endphp
                             <li>
                                 <time class="dates__date" datetime="{{ $when->toDateString() }}">
-                                    {{ $when->format('j M') }}
+                                    {{ $locale === 'de' ? $when->isoFormat('D. MMM') : $when->format('j M') }}
                                 </time>
                                 <span class="dates__place">
                                     {{ $show['city'] }}, {{ $show['country'] }}
@@ -252,32 +264,23 @@
             <section class="story" id="story" aria-labelledby="story-title">
                 <div class="section story__grid">
                     <div class="story__copy">
-                        <p class="section__eyebrow">The project</p>
-                        <h2 class="section__title" id="story-title">Fifteen years to find common ground</h2>
+                        <p class="section__eyebrow">{{ __('site.story.eyebrow') }}</p>
+                        <h2 class="section__title" id="story-title">{{ __('site.story.title') }}</h2>
                         <p>
-                            After a tour with Allan Holdsworth in 2012, guitarist
-                            <a href="https://www.jeffaug.com" rel="noopener noreferrer">Jeff Aug</a>
-                            and pianist
-                            <a href="http://www.murat-parlak.de/" rel="noopener noreferrer">Murat Parlak</a>
-                            started writing what was meant to be Aug’s eighth acoustic
-                            instrumental album. Some of the new pieces asked for a larger room.
+                            {!! __('site.story.p1', [
+                                'jeff' => '<a href="https://www.jeffaug.com" rel="noopener noreferrer">Jeff Aug</a>',
+                                'murat' => '<a href="http://www.murat-parlak.de/" rel="noopener noreferrer">Murat Parlak</a>',
+                            ]) !!}
                         </p>
-                        <p>
-                            The Jeff Aug / Murat Parlak Quintet answers that ask: fingerstyle steel-string
-                            guitar and piano joined by violin, cello, drums and percussion — melodic,
-                            cinematic, and hard to pin to one genre.
-                        </p>
-                        <p>
-                            “It took 15 years to make this happen,” Aug says, “but if it were easy,
-                            I guess everyone would do it.”
-                        </p>
+                        <p>{{ __('site.story.p2') }}</p>
+                        <p>{{ __('site.story.p3') }}</p>
                     </div>
                     <picture>
                         <source srcset="/img/band-color.webp" type="image/webp">
                         <img
                             class="story__photo"
                             src="/img/band-color.png"
-                            alt="Jeff Aug / Murat Parlak Quintet in the studio"
+                            alt="{{ __('site.story.photo_alt') }}"
                             width="1024"
                             height="682"
                             loading="lazy"
@@ -288,18 +291,18 @@
 
             <section id="lineup" aria-labelledby="lineup-title">
                 <div class="section">
-                    <p class="section__eyebrow">Lineup</p>
-                    <h2 class="section__title" id="lineup-title">The quintet</h2>
+                    <p class="section__eyebrow">{{ __('site.lineup.eyebrow') }}</p>
+                    <h2 class="section__title" id="lineup-title">{{ __('site.lineup.title') }}</h2>
                     <p class="section__lede">
-                        Players from the
-                        <a href="https://www.anneclarkofficial.com/" rel="noopener noreferrer">Anne Clark Band</a>
-                        and beyond — jazz, rock, classical, and Stockfisch studio roots in one ensemble.
+                        {!! __('site.lineup.lede', [
+                            'anne' => '<a href="https://www.anneclarkofficial.com/" rel="noopener noreferrer">Anne Clark Band</a>',
+                        ]) !!}
                     </p>
                     <ul class="lineup">
                         @foreach ($tour['lineup'] as $member)
                             <li>
                                 <span class="lineup__name">{{ $member['name'] }}</span>
-                                <span class="lineup__role">{{ $member['role'] }}</span>
+                                <span class="lineup__role">{{ __('site.roles.'.$member['role']) }}</span>
                             </li>
                         @endforeach
                     </ul>
@@ -308,15 +311,13 @@
 
             <section class="contact" id="contact" aria-labelledby="contact-title">
                 <div class="section">
-                    <p class="section__eyebrow">Professional contacts</p>
-                    <h2 class="section__title" id="contact-title">Booking &amp; press</h2>
-                    <p class="section__lede">
-                        For tour inquiries and media, reach the team below.
-                    </p>
+                    <p class="section__eyebrow">{{ __('site.contact.eyebrow') }}</p>
+                    <h2 class="section__title" id="contact-title">{{ __('site.contact.title') }}</h2>
+                    <p class="section__lede">{{ __('site.contact.lede') }}</p>
                     <ul class="contacts">
-                        @foreach ($tour['contacts'] as $contact)
+                        @foreach ($tour['contacts'] as $key => $contact)
                             <li>
-                                <span class="contacts__role">{{ $contact['role'] }}</span>
+                                <span class="contacts__role">{{ __('site.contact.'.$key) }}</span>
                                 <a
                                     class="contacts__name"
                                     href="{{ $contact['url'] }}"
@@ -334,44 +335,6 @@
             </section>
         </main>
 
-        <footer class="site-footer">
-            <div class="site-footer__inner">
-                <p>
-                    {{ $album['artist'] }} · {{ $album['title'] }} ·
-                    <a href="{{ $album['label_url'] }}" rel="noopener noreferrer">{{ $album['label'] }}</a>
-                    <span aria-hidden="true">·</span>
-                    <a href="{{ url('/impressum') }}">Impressum</a>
-                    <span aria-hidden="true">·</span>
-                    <a href="{{ url('/datenschutz') }}">Datenschutz</a>
-                </p>
-                <div class="site-footer__end">
-                    <p class="site-footer__contacts">
-                        <a href="{{ $tour['contacts']['booking']['url'] }}" rel="noopener noreferrer">Maximum Booking</a>
-                        <span aria-hidden="true">·</span>
-                        <a href="{{ $tour['contacts']['press']['url'] }}" rel="noopener noreferrer">Hot Mistake PR</a>
-                    </p>
-                    <div class="site-footer__social">
-                        <a
-                            class="social-link"
-                            href="{{ $tour['social']['facebook'] }}"
-                            rel="noopener noreferrer"
-                            aria-label="Listen Up Jazzhole on Facebook"
-                        >
-                            <span class="social-link__mark" aria-hidden="true">@include('partials.facebook-icon')</span>
-                            <span class="social-link__label">Facebook</span>
-                        </a>
-                        <a
-                            class="social-link"
-                            href="{{ $tour['social']['instagram'] }}"
-                            rel="noopener noreferrer"
-                            aria-label="Listen Up Jazzhole on Instagram"
-                        >
-                            <span class="social-link__mark" aria-hidden="true">@include('partials.instagram-icon')</span>
-                            <span class="social-link__label">Instagram</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <x-site-footer :locale="$locale" :alternates="$alternates" />
     </body>
 </html>
