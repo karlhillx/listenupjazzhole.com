@@ -1,0 +1,133 @@
+name: Deploy
+
+# CI is opt-in; pushes to production branches still deploy automatically.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+env:
+  CONTAINER_APP_PATH: /var/www/html
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Check deploy secrets
+        id: config
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_CONTAINER: ${{ secrets.DEPLOY_CONTAINER }}
+        run: |
+          missing=()
+          [ -z "$DEPLOY_HOST" ] && missing+=("DEPLOY_HOST")
+          [ -z "$DEPLOY_USER" ] && missing+=("DEPLOY_USER")
+          [ -z "$DEPLOY_KEY" ] && missing+=("DEPLOY_SSH_KEY")
+          if [ "${#missing[@]}" -gt 0 ]; then
+            echo "missing=${missing[*]}" >> "$GITHUB_OUTPUT"
+            echo "::error title=Deploy secrets missing::Add environment secrets: ${missing[*]}"
+            echo "Go to: Settings → Environments → production → Environment secrets"
+            echo "Required: DEPLOY_HOST, DEPLOY_USER, DEPLOY_SSH_KEY"
+            echo "Optional: DEPLOY_CONTAINER (default karl-listenupjazzhole-1)"
+            exit 0
+          fi
+          echo "ready=true" >> "$GITHUB_OUTPUT"
+          echo "container=${DEPLOY_CONTAINER:-karl-listenupjazzhole-1}" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v5
+        if: steps.config.outputs.ready == 'true'
+        with:
+          ref: ${{ github.sha }}
+
+      - name: Deploy to production
+        if: steps.config.outputs.ready == 'true'
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_CONTAINER: ${{ steps.config.outputs.container }}
+          APP_PATH: ${{ env.CONTAINER_APP_PATH }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          SSH_OPTS=(
+            -i "$HOME/.ssh/deploy_key"
+            -o StrictHostKeyChecking=no
+            -o UserKnownHostsFile=/dev/null
+            -o ConnectTimeout=20
+            -o ServerAliveInterval=15
+            -o ServerAliveCountMax=4
+            -o ControlMaster=auto
+            -o ControlPersist=180
+            -o ControlPath="$HOME/.ssh/cm-%C"
+          )
+          target="${DEPLOY_USER}@${DEPLOY_HOST}"
+          retry() {
+            local attempt=1
+            local delay=5
+            local max=6
+            until "$@"; do
+              if [ "$attempt" -ge "$max" ]; then
+                echo "::error::SSH failed after ${max} attempts"
+                return 255
+              fi
+              echo "SSH attempt ${attempt}/${max} failed; retrying in ${delay}s..."
+              ssh "${SSH_OPTS[@]}" -O exit "$target" >/dev/null 2>&1 || true
+              sleep "$delay"
+              attempt=$((attempt + 1))
+              delay=$((delay * 2))
+            done
+          }
+          remote() {
+            retry ssh "${SSH_OPTS[@]}" "$target" "$@"
+          }
+
+          retry ssh "${SSH_OPTS[@]}" -fN "$target"
+
+          went_down=0
+          bring_up() {
+            if [ "$went_down" = 1 ]; then
+              ssh "${SSH_OPTS[@]}" "$target" "docker exec ${DEPLOY_CONTAINER} php artisan up --no-interaction" || true
+              ssh "${SSH_OPTS[@]}" -O exit "$target" >/dev/null 2>&1 || true
+            fi
+          }
+          trap bring_up EXIT
+
+          remote "docker exec ${DEPLOY_CONTAINER} bash -lc 'cd ${APP_PATH} && php artisan down --retry=60 --no-interaction'"
+          went_down=1
+
+          tar czf - \
+            --exclude='./.git' \
+            --exclude='./vendor' \
+            --exclude='./node_modules' \
+            --exclude='./.env' \
+            --exclude='./storage' \
+            --exclude='./bootstrap/cache/*.php' \
+            --exclude='./.claude' \
+            --exclude='./.agents' \
+            --exclude='./.ai' \
+            --exclude='./.cursor' \
+            . | ssh "${SSH_OPTS[@]}" "$target" \
+            "docker exec -i ${DEPLOY_CONTAINER} tar xzf - -C ${APP_PATH}"
+
+          remote "docker exec ${DEPLOY_CONTAINER} bash -lc 'cd ${APP_PATH} && bash scripts/deploy-remote.sh'"
+          remote "docker exec karl-nginx-1 nginx -s reload 2>/dev/null || true"
+
+          curl --fail --silent --show-error --retry 3 --retry-delay 2 https://listenupjazzhole.com/ > /dev/null
+          went_down=0
+
+      - name: Fail when deploy secrets are missing
+        if: steps.config.outputs.missing != ''
+        run: |
+          echo "Missing secrets: ${{ steps.config.outputs.missing }}"
+          exit 1
