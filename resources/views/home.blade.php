@@ -254,7 +254,15 @@
                                 <span class="dates__place">
                                     {{ $show['city'] }}, {{ $show['country'] }}
                                 </span>
-                                <span class="dates__venue">{{ $show['venue'] }}</span>
+                                @if (! empty($show['venue_url']))
+                                    <a
+                                        class="dates__venue"
+                                        href="{{ $show['venue_url'] }}"
+                                        rel="noopener noreferrer"
+                                    >{{ $show['venue'] }}</a>
+                                @else
+                                    <span class="dates__venue">{{ $show['venue'] }}</span>
+                                @endif
                             </li>
                         @endforeach
                     </ol>

@@ -841,6 +841,18 @@
     .dates__venue {
         color: var(--color-mute);
         font-size: 0.98rem;
+        text-decoration: none;
+        justify-self: start;
+    }
+
+    @media (min-width: 720px) {
+        a.dates__venue {
+            justify-self: end;
+        }
+    }
+
+    a.dates__venue:hover {
+        color: var(--color-signal);
     }
 
     .story {
