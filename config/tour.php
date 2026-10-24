@@ -31,6 +31,9 @@ return [
             'url' => 'https://www.hotmistakepr.com',
         ],
     ],
+    'social' => [
+        'facebook' => 'https://www.facebook.com/listenupjazzhole',
+    ],
     'dates' => [
         ['date' => '2027-02-17', 'city' => 'Hamburg', 'country' => 'DE', 'venue' => 'Kent Club'],
         ['date' => '2027-02-19', 'city' => 'Kodersdorf', 'country' => 'DE', 'venue' => 'Weinscheune'],
