@@ -91,6 +91,14 @@
                         <span class="btn__icon" aria-hidden="true">@include('partials.facebook-icon')</span>
                         <span>Facebook</span>
                     </a>
+                    <a
+                        class="btn btn--ghost btn--social"
+                        href="{{ $tour['social']['instagram'] }}"
+                        rel="noopener noreferrer"
+                    >
+                        <span class="btn__icon" aria-hidden="true">@include('partials.instagram-icon')</span>
+                        <span>Instagram</span>
+                    </a>
                 </div>
             </div>
         </header>
@@ -336,15 +344,26 @@
                         <span aria-hidden="true">·</span>
                         <a href="{{ $tour['contacts']['press']['url'] }}" rel="noopener noreferrer">Hot Mistake PR</a>
                     </p>
-                    <a
-                        class="social-link"
-                        href="{{ $tour['social']['facebook'] }}"
-                        rel="noopener noreferrer"
-                        aria-label="Listen Up Jazzhole on Facebook"
-                    >
-                        <span class="social-link__mark" aria-hidden="true">@include('partials.facebook-icon')</span>
-                        <span class="social-link__label">Facebook</span>
-                    </a>
+                    <div class="site-footer__social">
+                        <a
+                            class="social-link"
+                            href="{{ $tour['social']['facebook'] }}"
+                            rel="noopener noreferrer"
+                            aria-label="Listen Up Jazzhole on Facebook"
+                        >
+                            <span class="social-link__mark" aria-hidden="true">@include('partials.facebook-icon')</span>
+                            <span class="social-link__label">Facebook</span>
+                        </a>
+                        <a
+                            class="social-link"
+                            href="{{ $tour['social']['instagram'] }}"
+                            rel="noopener noreferrer"
+                            aria-label="Listen Up Jazzhole on Instagram"
+                        >
+                            <span class="social-link__mark" aria-hidden="true">@include('partials.instagram-icon')</span>
+                            <span class="social-link__label">Instagram</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </footer>

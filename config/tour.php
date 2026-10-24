@@ -35,6 +35,7 @@ return [
     ],
     'social' => [
         'facebook' => 'https://www.facebook.com/listenupjazzhole',
+        'instagram' => 'https://www.instagram.com/listenupjazzhole/',
     ],
     'video' => [
         'id' => 'sqaZwyiASWA',

@@ -837,6 +837,13 @@
         align-items: center;
     }
 
+    .site-footer__social {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem;
+        align-items: center;
+    }
+
     .site-footer__contacts {
         display: flex;
         flex-wrap: wrap;
