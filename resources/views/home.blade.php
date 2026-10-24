@@ -129,8 +129,11 @@
                         <p class="section__eyebrow">The project</p>
                         <h2 class="section__title" id="story-title">Fifteen years to find common ground</h2>
                         <p>
-                            After a tour with Allan Holdsworth in 2012, guitarist Jeff Aug and pianist
-                            Murat Parlak started writing what was meant to be Aug’s eighth acoustic
+                            After a tour with Allan Holdsworth in 2012, guitarist
+                            <a href="https://www.jeffaug.com" rel="noopener noreferrer">Jeff Aug</a>
+                            and pianist
+                            <a href="http://www.murat-parlak.de/" rel="noopener noreferrer">Murat Parlak</a>
+                            started writing what was meant to be Aug’s eighth acoustic
                             instrumental album. Some of the new pieces asked for a larger room.
                         </p>
                         <p>

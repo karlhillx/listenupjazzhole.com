@@ -348,6 +348,17 @@
         max-width: 40rem;
     }
 
+    .story__copy a {
+        color: #fff;
+        font-weight: 650;
+        text-decoration: underline;
+        text-underline-offset: 0.16em;
+    }
+
+    .story__copy a:hover {
+        color: var(--color-signal);
+    }
+
     .story__photo {
         width: 100%;
         display: block;
