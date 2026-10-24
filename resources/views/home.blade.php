@@ -60,17 +60,12 @@
                     <a class="btn btn--signal" href="#tour">Tour dates</a>
                     <a class="btn btn--ghost" href="#album">The album</a>
                     <a
-                        class="social-icon social-icon--hero"
+                        class="btn btn--ghost btn--social"
                         href="{{ $tour['social']['facebook'] }}"
                         rel="noopener noreferrer"
-                        aria-label="Listen Up Jazzhole on Facebook"
                     >
-                        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
-                            <path
-                                fill="currentColor"
-                                d="M14 8.2h2.4V5H14c-2.3 0-3.8 1.5-3.8 3.9V11H8v3.2h2.2V22h3.4v-7.8H16l.5-3.2h-2.9V9.3c0-.7.3-1.1 1.1-1.1z"
-                            />
-                        </svg>
+                        <span class="btn__icon" aria-hidden="true">@include('partials.facebook-icon')</span>
+                        <span>Facebook</span>
                     </a>
                 </div>
             </div>
@@ -234,17 +229,13 @@
                         <a href="{{ $tour['contacts']['press']['url'] }}" rel="noopener noreferrer">Hot Mistake PR</a>
                     </p>
                     <a
-                        class="social-icon"
+                        class="social-link"
                         href="{{ $tour['social']['facebook'] }}"
                         rel="noopener noreferrer"
                         aria-label="Listen Up Jazzhole on Facebook"
                     >
-                        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
-                            <path
-                                fill="currentColor"
-                                d="M14 8.2h2.4V5H14c-2.3 0-3.8 1.5-3.8 3.9V11H8v3.2h2.2V22h3.4v-7.8H16l.5-3.2h-2.9V9.3c0-.7.3-1.1 1.1-1.1z"
-                            />
-                        </svg>
+                        <span class="social-link__mark" aria-hidden="true">@include('partials.facebook-icon')</span>
+                        <span class="social-link__label">Facebook</span>
                     </a>
                 </div>
             </div>
