@@ -162,8 +162,9 @@
                     <p class="section__eyebrow">Lineup</p>
                     <h2 class="section__title" id="lineup-title">The quintet</h2>
                     <p class="section__lede">
-                        Players from the Anne Clark Band and beyond — jazz, rock, classical, and
-                        Stockfisch studio roots in one ensemble.
+                        Players from the
+                        <a href="https://www.anneclarkofficial.com/" rel="noopener noreferrer">Anne Clark Band</a>
+                        and beyond — jazz, rock, classical, and Stockfisch studio roots in one ensemble.
                     </p>
                     <ul class="lineup">
                         @foreach ($tour['lineup'] as $member)

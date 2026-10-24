@@ -215,6 +215,17 @@
         color: color-mix(in oklab, var(--color-ink) 72%, white);
     }
 
+    .section__lede a {
+        color: inherit;
+        font-weight: 650;
+        text-decoration: underline;
+        text-underline-offset: 0.16em;
+    }
+
+    .section__lede a:hover {
+        color: var(--color-signal);
+    }
+
     .album {
         background:
             linear-gradient(160deg, var(--color-navy-deep), var(--color-navy) 55%, #163a8a);
