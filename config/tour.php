@@ -34,6 +34,14 @@ return [
     'social' => [
         'facebook' => 'https://www.facebook.com/listenupjazzhole',
     ],
+    'video' => [
+        'id' => 'sqaZwyiASWA',
+        'title' => 'Listen Up, Jazzhole! — Jeff Aug / Murat Parlak Quintet',
+        'url' => 'https://www.youtube.com/watch?v=sqaZwyiASWA',
+        'embed' => 'https://www.youtube-nocookie.com/embed/sqaZwyiASWA',
+        'poster' => '/img/video-poster.jpg',
+        'poster_webp' => '/img/video-poster.webp',
+    ],
     'dates' => [
         ['date' => '2027-02-17', 'city' => 'Hamburg', 'country' => 'DE', 'venue' => 'Kent Club'],
         ['date' => '2027-02-19', 'city' => 'Kodersdorf', 'country' => 'DE', 'venue' => 'Weinscheune'],

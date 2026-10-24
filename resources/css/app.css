@@ -251,6 +251,244 @@
         color: var(--color-signal);
     }
 
+    .watch {
+        background:
+            linear-gradient(180deg, #ebe7df 0%, var(--color-paper) 40%, #e7e2d8 100%);
+        border-bottom: 2px solid var(--color-ink);
+    }
+
+    .watch__layout {
+        display: grid;
+        gap: clamp(1.75rem, 4vw, 3rem);
+        align-items: center;
+    }
+
+    @media (min-width: 900px) {
+        .watch__layout {
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
+        }
+    }
+
+    .watch__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .watch__actions .btn--ink {
+        border-color: var(--color-ink);
+    }
+
+    .watch__stage {
+        position: relative;
+        isolation: isolate;
+        aspect-ratio: 16 / 9;
+        background: var(--color-navy-deep);
+        overflow: hidden;
+        box-shadow:
+            12px 12px 0 color-mix(in oklab, var(--color-signal) 85%, black),
+            0 24px 50px rgba(7, 21, 54, 0.28);
+        outline: none;
+    }
+
+    .watch__stage:focus-visible {
+        outline: 3px solid var(--color-signal);
+        outline-offset: 4px;
+    }
+
+    .watch__stage::before {
+        content: '';
+        position: absolute;
+        inset: 0 auto auto 0;
+        width: 38%;
+        height: 18%;
+        z-index: 2;
+        pointer-events: none;
+        background: linear-gradient(135deg, var(--color-navy) 0 55%, transparent 55%);
+        opacity: 0.85;
+    }
+
+    .watch__stage::after {
+        content: '';
+        position: absolute;
+        inset: auto 0 0 auto;
+        width: 28%;
+        height: 22%;
+        z-index: 2;
+        pointer-events: none;
+        background: linear-gradient(-45deg, var(--color-signal) 0 42%, transparent 42%);
+        opacity: 0.9;
+    }
+
+    .watch__stage.is-playing::before,
+    .watch__stage.is-playing::after,
+    .watch__stage.is-playing .watch__caption {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .watch__frame {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+    }
+
+    .watch__poster,
+    .watch__frame iframe {
+        width: 100%;
+        height: 100%;
+        display: block;
+        border: 0;
+        object-fit: cover;
+    }
+
+    .watch__frame iframe {
+        background: #000;
+    }
+
+    .watch__play {
+        position: absolute;
+        inset: 50% auto auto 50%;
+        z-index: 3;
+        transform: translate(-50%, -50%);
+        display: grid;
+        place-items: center;
+        width: 5.5rem;
+        height: 5.5rem;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .watch__play-ring {
+        position: absolute;
+        inset: 0;
+        border: 2px solid rgba(255, 255, 255, 0.7);
+        background: rgba(7, 21, 54, 0.35);
+        backdrop-filter: blur(6px);
+        animation: play-pulse 2.8s ease-in-out infinite;
+    }
+
+    .watch__play-core {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        place-items: center;
+        width: 3.6rem;
+        height: 3.6rem;
+        background: var(--color-signal);
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+        transition: transform 0.2s ease;
+    }
+
+    .watch__play-core svg {
+        margin-left: 0.15rem;
+    }
+
+    .watch__play-label {
+        position: absolute;
+        bottom: -1.7rem;
+        font-family: var(--font-display);
+        font-size: 0.95rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #fff;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+    }
+
+    .watch__play:hover .watch__play-core,
+    .watch__play:focus-visible .watch__play-core {
+        transform: scale(1.06);
+    }
+
+    .watch__play:focus-visible {
+        outline: none;
+    }
+
+    .watch__play:focus-visible .watch__play-ring {
+        border-color: #fff;
+        box-shadow: 0 0 0 3px rgba(232, 78, 27, 0.55);
+    }
+
+    .watch__caption {
+        position: absolute;
+        left: 1rem;
+        bottom: 1rem;
+        z-index: 3;
+        font-family: var(--font-display);
+        font-size: 1rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.88);
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+    }
+
+    .watch-dialog {
+        width: min(1120px, calc(100vw - 1.5rem));
+        max-width: 1120px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: #fff;
+    }
+
+    .watch-dialog::backdrop {
+        background: rgba(7, 21, 54, 0.88);
+        backdrop-filter: blur(8px);
+    }
+
+    .watch-dialog__chrome {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .watch-dialog__title {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: clamp(1rem, 2.5vw, 1.35rem);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+    }
+
+    .watch-dialog__close {
+        min-height: 2.5rem;
+        padding: 0.45rem 0.9rem;
+        border: 2px solid rgba(255, 255, 255, 0.55);
+        background: transparent;
+        color: #fff;
+        font-family: var(--font-display);
+        font-size: 1rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+
+    .watch-dialog__close:hover {
+        border-color: #fff;
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    .watch-dialog__stage {
+        aspect-ratio: 16 / 9;
+        background: #000;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    .watch-dialog__frame,
+    .watch-dialog__frame iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        display: block;
+    }
+
     .album {
         background:
             linear-gradient(160deg, var(--color-navy-deep), var(--color-navy) 55%, #163a8a);
@@ -625,6 +863,18 @@
     }
     50% {
         transform: rotate(-4deg) translateY(-0.05em);
+    }
+}
+
+@keyframes play-pulse {
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.95;
+    }
+    50% {
+        transform: scale(1.08);
+        opacity: 1;
     }
 }
 

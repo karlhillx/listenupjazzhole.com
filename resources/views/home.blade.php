@@ -1,5 +1,6 @@
 @php
     $album = $tour['album'];
+    $video = $tour['video'];
     $dates = collect($tour['dates']);
 @endphp
 <!DOCTYPE html>
@@ -57,7 +58,8 @@
                     <em>For the Love of Nine</em> and a European run built for curious ears.
                 </p>
                 <div class="hero__cta">
-                    <a class="btn btn--signal" href="#tour">Tour dates</a>
+                    <a class="btn btn--signal" href="#watch">Watch</a>
+                    <a class="btn btn--ghost" href="#tour">Tour dates</a>
                     <a class="btn btn--ghost" href="#album">The album</a>
                     <a
                         class="btn btn--ghost btn--social"
@@ -72,6 +74,90 @@
         </header>
 
         <main>
+            <section
+                class="watch"
+                id="watch"
+                aria-labelledby="watch-title"
+                data-watch
+                data-video-id="{{ $video['id'] }}"
+            >
+                <div class="section watch__layout">
+                    <div class="watch__copy">
+                        <p class="section__eyebrow">Official video</p>
+                        <h2 class="section__title" id="watch-title">Hear the room</h2>
+                        <p class="section__lede">
+                            The Listen Up, Jazzhole! film — watch inline, open the cinema view, or take it to YouTube.
+                        </p>
+                        <div class="watch__actions">
+                            <button type="button" class="btn btn--signal" data-watch-open-cinema>
+                                Cinema mode
+                            </button>
+                            <a
+                                class="btn btn--ink"
+                                href="{{ $video['url'] }}"
+                                rel="noopener noreferrer"
+                            >
+                                YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div
+                        class="watch__stage"
+                        data-watch-stage
+                        tabindex="0"
+                        role="group"
+                        aria-label="{{ $video['title'] }}"
+                    >
+                        <div class="watch__frame" data-watch-frame data-title="{{ $video['title'] }}">
+                            <picture>
+                                <source srcset="{{ $video['poster_webp'] }}" type="image/webp">
+                                <img
+                                    class="watch__poster"
+                                    src="{{ $video['poster'] }}"
+                                    alt=""
+                                    width="1280"
+                                    height="720"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </picture>
+                        </div>
+
+                        <button
+                            type="button"
+                            class="watch__play"
+                            data-watch-play
+                            aria-label="Play {{ $video['title'] }}"
+                        >
+                            <span class="watch__play-ring" aria-hidden="true"></span>
+                            <span class="watch__play-core" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="28" height="28" focusable="false">
+                                    <path fill="currentColor" d="M8.2 5.4v13.2L19.2 12 8.2 5.4z" />
+                                </svg>
+                            </span>
+                            <span class="watch__play-label">Play</span>
+                        </button>
+
+                        <div class="watch__caption" aria-hidden="true">
+                            <span>Listen Up, Jazzhole!</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <dialog class="watch-dialog" data-watch-dialog aria-label="Cinema mode">
+                <div class="watch-dialog__chrome">
+                    <p class="watch-dialog__title">{{ $video['title'] }}</p>
+                    <button type="button" class="watch-dialog__close" data-watch-close aria-label="Close cinema mode">
+                        Close
+                    </button>
+                </div>
+                <div class="watch-dialog__stage">
+                    <div class="watch-dialog__frame" data-watch-dialog-frame data-title="{{ $video['title'] }}"></div>
+                </div>
+            </dialog>
+
             <section class="album" id="album" aria-labelledby="album-title">
                 <div class="section album__grid">
                     <picture>
