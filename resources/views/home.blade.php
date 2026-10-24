@@ -2,6 +2,8 @@
     $album = $tour['album'];
     $video = $tour['video'];
     $dates = collect($tour['dates']);
+    $tourStartsAt = \Illuminate\Support\Carbon::parse($tour['starts_at']);
+    $tourHasStarted = $tourStartsAt->isPast();
 @endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -57,6 +59,26 @@
                     <strong>Jeff Aug / Murat Parlak Quintet</strong> — debut album
                     <em>For the Love of Nine</em> and a European run built for curious ears.
                 </p>
+                @unless ($tourHasStarted)
+                    <div
+                        class="countdown"
+                        data-countdown
+                        data-countdown-target="{{ $tourStartsAt->toIso8601String() }}"
+                        aria-live="polite"
+                    >
+                        <a class="countdown__label" href="#tour">Tour opens in</a>
+                        <div class="countdown__track" role="timer" aria-atomic="true">
+                            @foreach (['days' => 'Days', 'hours' => 'Hrs', 'minutes' => 'Min', 'seconds' => 'Sec'] as $unit => $label)
+                                <div class="countdown__cell" data-countdown-unit="{{ $unit }}">
+                                    <span class="countdown__value" data-countdown-value>
+                                        <span class="countdown__digit" data-countdown-digit>00</span>
+                                    </span>
+                                    <span class="countdown__unit">{{ $label }}</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endunless
                 <div class="hero__cta">
                     <a class="btn btn--signal" href="#watch">Watch</a>
                     <a class="btn btn--ghost" href="#tour">Tour dates</a>

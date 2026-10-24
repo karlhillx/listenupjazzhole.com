@@ -130,6 +130,82 @@
         color: #fff;
     }
 
+    .countdown {
+        margin-top: 1.35rem;
+        max-width: 28rem;
+        animation: rise 1s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both;
+    }
+
+    .countdown__label {
+        display: inline-block;
+        margin: 0 0 0.55rem;
+        font-family: var(--font-display);
+        font-size: 0.95rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.72);
+        text-decoration: none;
+    }
+
+    .countdown__label:hover {
+        color: var(--color-signal);
+    }
+
+    .countdown__track {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.45rem;
+    }
+
+    .countdown__cell {
+        display: grid;
+        gap: 0.2rem;
+        justify-items: center;
+        padding: 0.55rem 0.35rem 0.45rem;
+        background: rgba(7, 21, 54, 0.42);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        backdrop-filter: blur(8px);
+    }
+
+    .countdown__value {
+        position: relative;
+        display: block;
+        overflow: hidden;
+        width: 100%;
+        text-align: center;
+        font-family: var(--font-display);
+        font-size: clamp(1.55rem, 5vw, 2.1rem);
+        line-height: 1;
+        letter-spacing: 0.04em;
+        color: #fff;
+    }
+
+    .countdown__digit {
+        display: block;
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+    }
+
+    .countdown__digit.is-tick {
+        animation: countdown-tick 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .countdown__unit {
+        font-family: var(--font-display);
+        font-size: 0.78rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--color-signal);
+    }
+
+    .countdown.is-live .countdown__track {
+        display: none;
+    }
+
+    .countdown.is-live .countdown__label::after {
+        content: ': now on the road';
+        color: var(--color-signal);
+    }
+
     .hero__cta {
         display: flex;
         flex-wrap: wrap;
@@ -874,6 +950,17 @@
     }
     50% {
         transform: scale(1.08);
+        opacity: 1;
+    }
+}
+
+@keyframes countdown-tick {
+    0% {
+        transform: translateY(55%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
         opacity: 1;
     }
 }

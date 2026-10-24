@@ -3,6 +3,8 @@
 return [
     'name' => 'Listen Up, Jazzhole!',
     'year' => 2027,
+    // First night: Hamburg · Kent Club (doors/show evening CET).
+    'starts_at' => '2027-02-17T20:00:00+01:00',
     'album' => [
         'title' => 'For the Love of Nine',
         'artist' => 'Jeff Aug / Murat Parlak Quintet',
