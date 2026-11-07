@@ -54,6 +54,13 @@ return [
             'venue_url' => 'https://www.kentclub.de/',
         ],
         [
+            'date' => '2027-02-18',
+            'city' => 'Berlin',
+            'country' => 'DE',
+            'venue' => 'Zig Zag Jazz Club',
+            'venue_url' => 'https://www.zigzag-jazzclub.berlin/',
+        ],
+        [
             'date' => '2027-02-19',
             'city' => 'Kodersdorf',
             'country' => 'DE',
@@ -80,6 +87,13 @@ return [
             'country' => 'DE',
             'venue' => 'Café Museum',
             'venue_url' => 'https://cafe-museum.de/',
+        ],
+        [
+            'date' => '2027-02-23',
+            'city' => 'Freiburg',
+            'country' => 'DE',
+            'venue' => 'Kaffeekoje',
+            'venue_url' => 'https://www.kaffeekoje.de/',
         ],
         [
             'date' => '2027-02-24',
@@ -145,11 +159,32 @@ return [
             'venue_url' => 'https://www.porgy.at/',
         ],
         [
+            'date' => '2027-04-15',
+            'city' => 'Rüsselsheim',
+            'country' => 'DE',
+            'venue' => 'Das Rind',
+            'venue_url' => 'https://dasrind.de/',
+        ],
+        [
+            'date' => '2027-04-16',
+            'city' => 'Heinsberg',
+            'country' => 'DE',
+            'venue' => 'Rondell im Klevchen',
+            'venue_url' => 'https://www.jms-hs.de/',
+        ],
+        [
             'date' => '2027-04-17',
             'city' => 'Minden',
             'country' => 'DE',
             'venue' => 'Jazz Club',
             'venue_url' => 'https://www.jazz-minden.de/',
+        ],
+        [
+            'date' => '2027-04-28',
+            'city' => 'Kempten',
+            'country' => 'DE',
+            'venue' => 'Kornhaus (Kemptener Jazzfrühling)',
+            'venue_url' => 'https://www.klecks.de/veranstaltungen/jazzfruehling',
         ],
     ],
 ];

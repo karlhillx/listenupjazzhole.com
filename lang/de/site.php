@@ -40,7 +40,7 @@ return [
     'tour' => [
         'eyebrow' => ':name Tour',
         'title' => 'Unterwegs in :year',
-        'lede' => 'Deutschland, Tschechien, Slowakei und Österreich — fünfzehn Abende für das neue Quintett.',
+        'lede' => 'Deutschland, Tschechien, Slowakei und Österreich — zwanzig Abende für das neue Quintett.',
     ],
     'story' => [
         'eyebrow' => 'Das Projekt',

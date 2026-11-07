@@ -40,7 +40,7 @@ return [
     'tour' => [
         'eyebrow' => ':name Tour',
         'title' => 'On the road in :year',
-        'lede' => 'Germany, Czechia, Slovakia, and Austria — fifteen nights for the new quintet.',
+        'lede' => 'Germany, Czechia, Slovakia, and Austria — twenty nights for the new quintet.',
     ],
     'story' => [
         'eyebrow' => 'The project',
