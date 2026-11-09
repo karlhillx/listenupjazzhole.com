@@ -52,6 +52,7 @@ return [
             'country' => 'DE',
             'venue' => 'Kent Club',
             'venue_url' => 'https://www.kentclub.de/',
+            'ticket_url' => 'https://tickets.kj.de/produkte/99806-tickets-jeff-aug-murat-parlak-quintet-kent-club-hamburg-am-17-02-2027',
         ],
         [
             'date' => '2027-02-18',
@@ -59,6 +60,7 @@ return [
             'country' => 'DE',
             'venue' => 'Zig Zag Jazz Club',
             'venue_url' => 'https://www.zigzag-jazzclub.berlin/',
+            'ticket_url' => 'https://www.eventim-light.com/de/a/665710997ed5f05a0e32f0e9/e/6acb6ac184ed3c6a8a6511ec',
         ],
         [
             'date' => '2027-02-19',
@@ -101,6 +103,7 @@ return [
             'country' => 'DE',
             'venue' => 'Tollhaus',
             'venue_url' => 'https://www.tollhaus.de/',
+            'ticket_url' => 'https://tickets.tollhaus.de/catalog/tickets/100719-tickets-jeff-aug-murat-parlak-quintet-kulturzentrum-tollhaus-karlsruhe-am-24-02-2027',
         ],
         [
             'date' => '2027-02-25',
@@ -108,6 +111,7 @@ return [
             'country' => 'DE',
             'venue' => "Muddy's",
             'venue_url' => 'https://muddys-club.net/',
+            'ticket_url' => 'https://muddys-club.net/index.php/muddys_event/jeff-aug-murat-parlak-quintett/',
         ],
         [
             'date' => '2027-02-26',
@@ -115,6 +119,7 @@ return [
             'country' => 'DE',
             'venue' => 'Stadtgarten',
             'venue_url' => 'https://www.stadtgarten.de/',
+            'ticket_url' => 'https://www.eventim.de/event/jeff-aug-murat-parlak-quintet-listen-up-jazzhole-tour-stadtgarten-koeln-22128666/?affiliate=TUG&srsltid=AYCX9vL3VVoDn84DPZWiFZkFFHJCqkEuBc1dKUGPCHRMp9d_aHlZn8QP',
         ],
         [
             'date' => '2027-02-27',
@@ -122,6 +127,7 @@ return [
             'country' => 'DE',
             'venue' => 'Grend',
             'venue_url' => 'https://grend.de/',
+            'ticket_url' => 'https://kulturzentrumgrend.ticket.io/6PKz1rUa/',
         ],
         [
             'date' => '2027-02-28',
@@ -136,6 +142,7 @@ return [
             'country' => 'DE',
             'venue' => 'mach | werk',
             'venue_url' => 'https://machwerkclub.clubdesk.com/',
+            'ticket_url' => 'https://www.kompakt.media/produkt/jeff-aug-murat-parlak-quintett-09-04-2027/',
         ],
         [
             'date' => '2027-04-10',
@@ -157,6 +164,7 @@ return [
             'country' => 'AT',
             'venue' => 'Porgy & Bess',
             'venue_url' => 'https://www.porgy.at/',
+            'ticket_url' => 'https://porgy.at/events/13203/',
         ],
         [
             'date' => '2027-04-15',
@@ -164,6 +172,7 @@ return [
             'country' => 'DE',
             'venue' => 'Das Rind',
             'venue_url' => 'https://dasrind.de/',
+            'ticket_url' => 'https://dasrind.reservix.de/tickets-jeff-aug-murat-parlak-quintett-listen-up-jazzhole-tour-in-ruesselsheim-das-rind-am-15-4-2027/e2634159',
         ],
         [
             'date' => '2027-04-16',
@@ -185,6 +194,7 @@ return [
             'country' => 'DE',
             'venue' => 'Kornhaus (Kemptener Jazzfrühling)',
             'venue_url' => 'https://www.klecks.de/veranstaltungen/jazzfruehling',
+            'ticket_url' => 'https://maximumbooking.dein-ticket.shop/events/jazzfruehling-extra/jeff-aug-murat-parlak-quintet?fbclid=IwY2xjawVelS1leHRuA2FlbQIxMABwZG9mBWJyaWQRMFQ2WGx6NUtrQ1o0MVNpbkNzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEf1uAvUX9_J25i0MlTQDVUBCcf122ftGl--eStx5EsUTmvYZrNdzy5tX0rAsc_aem_2pXW1fhPmqFbgf2wO7UKEA',
         ],
     ],
 ];

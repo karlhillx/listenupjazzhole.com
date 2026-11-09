@@ -256,10 +256,10 @@
                                 <span class="dates__place">
                                     {{ $show['city'] }}, {{ $show['country'] }}
                                 </span>
-                                @if (! empty($show['venue_url']))
+                                @if (! empty($show['ticket_url'] ?? $show['venue_url'] ?? null))
                                     <a
                                         class="dates__venue"
-                                        href="{{ $show['venue_url'] }}"
+                                        href="{{ $show['ticket_url'] ?? $show['venue_url'] }}"
                                         rel="noopener noreferrer"
                                     >{{ $show['venue'] }}</a>
                                 @else
