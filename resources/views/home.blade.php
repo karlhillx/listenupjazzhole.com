@@ -254,7 +254,8 @@
                                     {{ $locale === 'de' ? $when->isoFormat('D. MMM') : $when->format('j M') }}
                                 </time>
                                 <span class="dates__place">
-                                    {{ $show['city'] }}, {{ $show['country'] }}
+                                    <span>{{ $show['city'] }}</span>
+                                    <span class="dates__country">{{ $show['country'] }}</span>
                                 </span>
                                 @if (! empty($show['ticket_url'] ?? $show['venue_url'] ?? null))
                                     <a
